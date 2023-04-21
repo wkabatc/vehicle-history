@@ -1,0 +1,68 @@
+<br />
+<div class="container">
+  <div class="forms">
+    <form ngNativeValidate [formGroup]="reportForm" (ngSubmit)="genReport()">
+      Raport dla pojazdu
+      <label>VIN </label>
+      <input formControlName="vin" required />
+      <button type="submit">Generuj raport</button>
+    </form>
+  </div>
+  <h1>Vehicle report</h1>
+  {{ vinNumbers }}
+  <br />
+  <br />
+  <h2>{{ basicInfo }}</h2>
+  <br />
+  Aktualny właściciel:
+  {{ owner }}
+  <br />
+  <br />
+  Informacje o ubezpieczeniu:
+  {{ policy }}
+  <br />
+  <br />
+  Właściciele po numerach bloku:
+  {{ ownersBlocks }}
+  <br />
+  {{ ownersEvents }}
+  <br />
+  <br />
+  Badania techniczne po numerach bloku:
+  {{ inspectsBlocks }}
+  <br />
+  {{ inspectsEvents }}
+  <br />
+  <br />
+  Przebiegi po numerach bloku:
+  {{ milesBlocks }}
+  <br />
+  {{ milesEvents }}
+  <br />
+  <br />
+  Kontrole policyjne po numerach bloku:
+  {{ controlsBlocks }}
+  <br />
+  {{ controlsEvents }}
+  <br />
+  <br />
+  Zgłoszenia kradzieży po numerach bloku:
+  {{ stealingsBlocks }}
+  <br />
+  {{ stealingsEvents }}
+  <br />
+  <br />
+  Szkody po numerach bloku:
+  {{ damagesBlocks }}
+  <br />
+  {{ damagesEvents }}
+  <br />
+  <br />
+  Zdjęcia
+  {{ photosCIDs }}
+  <div class="image-gallery">
+    <div *ngFor="let id of photosCIDs">
+      <img [src]="'https://ipfs.io/ipfs/' + id" width="500" alt="Image" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,237 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Vehicles.sol": {
+      "lastModificationDate": 1680375553816,
+      "contentHash": "7418ca1a71099daf3efb8944b077983b",
+      "sourceName": "blockchain/contracts/Vehicles.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Owners.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Vehicles"]
+    },
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Owners.sol": {
+      "lastModificationDate": 1680378248496,
+      "contentHash": "0ba35e92612c957010fdc0ec2aaeda27",
+      "sourceName": "blockchain/contracts/Owners.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Vehicles.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Owners"]
+    },
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Mileages.sol": {
+      "lastModificationDate": 1680378517660,
+      "contentHash": "2e5ba13e0a5165fae0494993d2166e62",
+      "sourceName": "blockchain/contracts/Mileages.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Vehicles.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Mileages"]
+    },
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Inspections.sol": {
+      "lastModificationDate": 1680378883390,
+      "contentHash": "8cc0269310c1f42a3b9477f9349c48b5",
+      "sourceName": "blockchain/contracts/Inspections.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Vehicles.sol", "./Mileages.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Inspections"]
+    },
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Controls.sol": {
+      "lastModificationDate": 1680378805061,
+      "contentHash": "abc5ec67b97f9913e37ba845f8b13bfb",
+      "sourceName": "blockchain/contracts/Controls.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Vehicles.sol", "./Mileages.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Controls"]
+    },
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Stealings.sol": {
+      "lastModificationDate": 1680546140571,
+      "contentHash": "fe724eec32c664b7acbfd39e2771b9ee",
+      "sourceName": "blockchain/contracts/Stealings.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Vehicles.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Stealings"]
+    },
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Policies.sol": {
+      "lastModificationDate": 1680375364654,
+      "contentHash": "63f7ec9d748efba6230c2382dbf39c8d",
+      "sourceName": "blockchain/contracts/Policies.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Vehicles.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Policies"]
+    },
+    "C:\\Users\\wojciech.kabatc\\Desktop\\moje\\magisterka\\vehicle-history-dapp\\blockchain\\contracts\\Damages.sol": {
+      "lastModificationDate": 1680548797363,
+      "contentHash": "54e35ae12bb30ed9dfb633b5ebaea67f",
+      "sourceName": "blockchain/contracts/Damages.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": ["ast"]
+            }
+          }
+        }
+      },
+      "imports": ["./Vehicles.sol", "./Mileages.sol"],
+      "versionPragmas": [">=0.7.0 <0.9.0"],
+      "artifacts": ["Damages"]
+    }
+  }
+}

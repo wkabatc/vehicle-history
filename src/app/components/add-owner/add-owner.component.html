@@ -1,0 +1,53 @@
+<div class="forms">
+  <form ngNativeValidate [formGroup]="ownerForm" (ngSubmit)="changeOwner()">
+    <!-- <div class="add-vehicle">
+      Informacje o właścicielu:
+      <br />
+      <label>VIN </label>
+      <input formControlName="vin" required />
+      <br />
+      <label>Numer rej </label>
+      <input formControlName="regNum" required />
+      <br />
+      <label>Właściciel </label>
+      <input formControlName="owner" required />
+      <br />
+      <label>Współwłaściciel </label>
+      <input formControlName="co_owner" />
+      <br />
+      <label>Województwo rej </label>
+      <input formControlName="regProvince" required />
+      <br />
+      <button type="submit">Ustaw właściciela</button>
+    </div> -->
+    <mat-card>
+      <mat-card-title>Nowy właściciel</mat-card-title>
+      <div class="flex-grow-1">
+        <mat-form-field appearance="fill">
+          <mat-label>VIN</mat-label>
+          <input matInput formControlName="vin" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Numer rejestracyjny</mat-label>
+          <input matInput formControlName="regNum" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Właściciel</mat-label>
+          <input matInput formControlName="owner" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Współwłaściciel</mat-label>
+          <input matInput formControlName="co_owner" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Województwo rejestracji</mat-label>
+          <input matInput formControlName="regProvince" required />
+        </mat-form-field>
+      </div>
+      <mat-divider inset></mat-divider>
+      <mat-card-actions align="end">
+        <button mat-button color="primary" type="submit">Akceptuj</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

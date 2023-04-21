@@ -1,0 +1,20 @@
+.file-upload-input {
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* .checkbox-row {
+  padding-top: 16px;
+} */
+
+.chechbox-wrapper {
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.checkbox-row {
+  margin-top: 10px;
+}

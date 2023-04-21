@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-card-title {
+  margin-bottom: 30px !important;
+}
+
+.mat-card {
+  margin-top: 200px;
+  height: 480px;
+  display: flex !important;
+  flex-direction: column;
+}
+
+input[matInput] {
+  max-height: 18px;
+}

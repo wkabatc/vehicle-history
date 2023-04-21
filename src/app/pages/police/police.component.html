@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <form
+        ngNativeValidate
+        [formGroup]="regControlFormGroup"
+        #regControlForm="ngForm"
+        (ngSubmit)="regControl()"
+      >
+        <mat-card>
+          <mat-card-title>Zarejestruj kontrolę drogową</mat-card-title>
+          <div class="flex-grow-1">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>VIN</mat-label>
+              <input
+                matInput
+                formControlName="vin"
+                [matAutocomplete]="auto1"
+                required
+              />
+              <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+                <mat-option
+                  *ngFor="let vin of filteredVins1 | async"
+                  [value]="vin"
+                >
+                  {{ vin }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Status dowodu rejestracyjnego</mat-label>
+              <input matInput formControlName="regCertStatus" required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Przebieg</mat-label>
+              <input
+                matInput
+                formControlName="mileage"
+                type="number"
+                min="0"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Rejestruj</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <form
+        ngNativeValidate
+        [formGroup]="repStealingFormGroup"
+        #repStealingForm="ngForm"
+        (ngSubmit)="reportStealing()"
+      >
+        <mat-card>
+          <mat-card-title>Zgłoś kradzież pojazdu</mat-card-title>
+          <div class="flex-grow-1">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>VIN</mat-label>
+              <input
+                matInput
+                formControlName="vin"
+                [matAutocomplete]="auto2"
+                required
+              />
+              <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+                <mat-option
+                  *ngFor="let vin of filteredVins2 | async"
+                  [value]="vin"
+                >
+                  {{ vin }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Miejsce</mat-label>
+              <input matInput formControlName="place" required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Data</mat-label>
+              <input
+                matInput
+                formControlName="date"
+                type="datetime-local"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Opis</mat-label>
+              <input matInput formControlName="description" required />
+            </mat-form-field>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Rejestruj</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

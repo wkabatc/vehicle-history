@@ -1,0 +1,252 @@
+<!-- <div class="forms">
+  <form
+    ngNativeValidate
+    [formGroup]="enterPolicyFormGroup"
+    (ngSubmit)="enterPolicy()"
+  >
+    Wprowadź informacje o polisie
+    <div class="add-vehicle">
+      <label>VIN </label>
+      <input formControlName="vin" required />
+      <br />
+      <label>Nr polisy </label>
+      <input formControlName="policyNum" type="number" required />
+      <br />
+      <label>OC &nbsp;</label>
+      <input formControlName="oc" type="checkbox"  required />
+      <br />
+      <label>AC &nbsp;</label>
+      <input formControlName="ac" type="checkbox" />
+      <br />
+      <label>NNW &nbsp;</label>
+      <input formControlName="nnw" type="checkbox" />
+      <br />
+      <label>ASSISTANCE &nbsp;</label>
+      <input formControlName="assistance" type="checkbox" />
+      <br />
+      <label>Data ważności od</label>
+      <input formControlName="validFrom" type="datetime-local" required />
+      <br />
+      <label>Data ważności do</label>
+      <input formControlName="validTo" type="datetime-local" required />
+      <br />
+      <button type="submit">Wprowadź</button>
+    </div>
+  </form>
+  <br />
+  <form
+    ngNativeValidate
+    [formGroup]="enterDamageFormGroup"
+    (ngSubmit)="enterDamage()"
+  >
+    Wprowadź szkodę na pojeździe
+    <div class="add-vehicle">
+      <label>VIN </label>
+      <input formControlName="vin" required />
+      <br />
+      <label>Data </label>
+      <input formControlName="date" type="datetime-local" required />
+      <br />
+      <label>Miejsce </label>
+      <input formControlName="place" required />
+      <br />
+      <label>Opis </label>
+      <input formControlName="description" required />
+      <br />
+      <label>Wartość szkody </label>
+      <input formControlName="damageVal" type="number" required />
+      <br />
+      <label>Przebieg </label>
+      <input formControlName="mileage" type="number" required />
+      <br />
+      <label>Zdjęcia &nbsp;</label>
+      <input
+        formControlName="photos"
+        type="file"
+        (change)="onFileSelected($event)"
+        multiple
+      />
+      <br />
+      <button type="submit">Zgłoś</button>
+    </div>
+  </form>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-5">
+      <form
+        ngNativeValidate
+        [formGroup]="enterPolicyFormGroup"
+        #enterPolicyForm="ngForm"
+        (ngSubmit)="enterPolicy()"
+      >
+        <mat-card>
+          <mat-card-title>Wprowadź informacje o polisie</mat-card-title>
+          <div class="flex-grow-1">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>VIN</mat-label>
+              <input
+                matInput
+                formControlName="vin"
+                [matAutocomplete]="auto1"
+                required
+              />
+              <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+                <mat-option
+                  *ngFor="let vin of filteredVins1 | async"
+                  [value]="vin"
+                >
+                  {{ vin }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Nr polisy</mat-label>
+              <input
+                matInput
+                formControlName="policyNum"
+                type="number"
+                min="0"
+                required
+              />
+            </mat-form-field>
+            <div class="chechbox-wrapper">
+              <!-- <mat-divider></mat-divider> -->
+              <div class="row checkbox-row">
+                <div class="col-sm-2">
+                  <mat-checkbox class="example-margin" formControlName="oc"
+                    >OC</mat-checkbox
+                  >
+                </div>
+                <div class="col-sm-2">
+                  <mat-checkbox class="example-margin" formControlName="ac"
+                    >AC</mat-checkbox
+                  >
+                </div>
+                <div class="col-sm-2">
+                  <mat-checkbox class="example-margin" formControlName="nnw"
+                    >NNW</mat-checkbox
+                  >
+                </div>
+                <div class="col-sm-6">
+                  <mat-checkbox
+                    class="example-margin"
+                    formControlName="assistance"
+                    >ASSISTANCE</mat-checkbox
+                  >
+                </div>
+              </div>
+              <!-- <mat-divider></mat-divider> -->
+            </div>
+            <mat-form-field appearance="fill">
+              <mat-label>Data ważności od</mat-label>
+              <input
+                matInput
+                formControlName="validFrom"
+                type="date"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Data ważności do</mat-label>
+              <input matInput formControlName="validTo" type="date" required />
+            </mat-form-field>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Wprowadź</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-sm-7">
+      <form
+        ngNativeValidate
+        [formGroup]="enterDamageFormGroup"
+        #enterDamageForm="ngForm"
+        (ngSubmit)="enterDamage()"
+      >
+        <mat-card>
+          <mat-card-title>Wprowadź szkodę na pojeździe</mat-card-title>
+          <div class="row flex-grow-1">
+            <div class="col-sm-6">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>VIN</mat-label>
+                <input
+                  matInput
+                  formControlName="vin"
+                  [matAutocomplete]="auto2"
+                  required
+                />
+                <mat-autocomplete
+                  autoActiveFirstOption
+                  #auto2="matAutocomplete"
+                >
+                  <mat-option
+                    *ngFor="let vin of filteredVins2 | async"
+                    [value]="vin"
+                  >
+                    {{ vin }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Data</mat-label>
+                <input
+                  matInput
+                  formControlName="date"
+                  type="datetime-local"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Miejsce</mat-label>
+                <input matInput formControlName="place" required />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Opis</mat-label>
+                <input matInput formControlName="description" required />
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Wartość szkody</mat-label>
+                <input
+                  matInput
+                  formControlName="damageVal"
+                  type="number"
+                  min="0"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Przebieg</mat-label>
+                <input
+                  matInput
+                  formControlName="mileage"
+                  type="number"
+                  min="0"
+                  required
+                />
+              </mat-form-field>
+              <div class="file-upload-input">
+                <label>Zdjęcia </label>
+                <input
+                  formControlName="photos"
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  multiple
+                />
+              </div>
+            </div>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Zgłoś</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

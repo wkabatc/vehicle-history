@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <form
+        ngNativeValidate
+        [formGroup]="regMileageFormGroup"
+        #regMileageForm="ngForm"
+        (ngSubmit)="regMileage()"
+      >
+        <mat-card>
+          <mat-card-title>Zarejestruj przebieg pojazdu</mat-card-title>
+          <div class="flex-grow-1">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>VIN</mat-label>
+              <input
+                matInput
+                formControlName="vin"
+                [matAutocomplete]="auto1"
+                required
+              />
+              <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+                <mat-option
+                  *ngFor="let vin of filteredVins1 | async"
+                  [value]="vin"
+                >
+                  {{ vin }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Przebieg</mat-label>
+              <input
+                matInput
+                formControlName="mileage"
+                type="number"
+                min="0"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Rejestruj</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <form
+        ngNativeValidate
+        [formGroup]="regInspectFormGroup"
+        #regInspectForm="ngForm"
+        (ngSubmit)="regInspection()"
+      >
+        <mat-card>
+          <mat-card-title>Badanie techniczne</mat-card-title>
+          <div class="flex-grow-1">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>VIN</mat-label>
+              <input
+                matInput
+                formControlName="vin"
+                [matAutocomplete]="auto2"
+                required
+              />
+              <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+                <mat-option
+                  *ngFor="let vin of filteredVins2 | async"
+                  [value]="vin"
+                >
+                  {{ vin }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Wynik badania</mat-label>
+              <input matInput formControlName="result" required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Przebieg</mat-label>
+              <input
+                matInput
+                formControlName="mileage"
+                type="number"
+                min="0"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Rejestruj</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
