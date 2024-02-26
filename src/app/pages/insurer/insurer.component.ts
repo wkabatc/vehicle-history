@@ -25,8 +25,6 @@ export class InsurerComponent implements OnInit {
   isChecked = true;
   selectedFiles: any;
 
-  public mmConnected$ = this.blockchainService.isConnectedToMM$;
-
   constructor(
     private blockchainService: BlockchainService,
     private ipfsService: IpfsService
@@ -53,7 +51,7 @@ export class InsurerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mmConnected$.subscribe(async (isConnected) => {
+    this.blockchainService.isConnectedToMM$.subscribe(async (isConnected) => {
       console.log('is connected? ' + isConnected);
       if (isConnected === true) {
         const vins = await this.blockchainService.getVinNumbers();

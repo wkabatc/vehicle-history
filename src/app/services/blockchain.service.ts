@@ -245,6 +245,7 @@ export class BlockchainService {
 
   async regDamage(formValue: any, photosHashes: String[]) {
     console.log(formValue);
+    console.warn('data: ' + formValue.date);
     console.log(addresses.damagesContract);
     console.warn('Hashe do transakcji:');
     console.warn(photosHashes);
@@ -296,9 +297,10 @@ export class BlockchainService {
     );
 
     const blockData = await this.provider.getBlock(events[0].blockNumber);
-    const date = new Date(blockData.timestamp * 1000);
+    //const date = new Date(blockData.timestamp * 1000);
+    const timestamp = blockData.timestamp;
 
-    return `${events[0].args} ${date}`;
+    return `${events[0].args},${timestamp}`;
   }
 
   async getMilesBlocks(vin: string) {
@@ -313,9 +315,10 @@ export class BlockchainService {
     );
 
     const blockData = await this.provider.getBlock(events[0].blockNumber);
-    const date = new Date(blockData.timestamp * 1000);
+    // const date = new Date(blockData.timestamp * 1000);
+    const timestamp = blockData.timestamp;
 
-    return `${events[0].args} ${date}`;
+    return `${events[0].args},${timestamp}`;
   }
 
   async getInspectsBlocks(vin: string) {
@@ -330,9 +333,10 @@ export class BlockchainService {
     );
 
     const blockData = await this.provider.getBlock(events[0].blockNumber);
-    const date = new Date(blockData.timestamp * 1000);
+    //const date = new Date(blockData.timestamp * 1000);
+    const timestamp = blockData.timestamp;
 
-    return `${events[0].args} ${date}`;
+    return `${events[0].args},${timestamp}`;
   }
 
   async getControlsBlocks(vin: string) {
@@ -347,9 +351,10 @@ export class BlockchainService {
     );
 
     const blockData = await this.provider.getBlock(events[0].blockNumber);
-    const date = new Date(blockData.timestamp * 1000);
+    //const date = new Date(blockData.timestamp * 1000);
+    const timestamp = blockData.timestamp;
 
-    return `${events[0].args} ${date}`;
+    return `${events[0].args},${timestamp}`;
   }
 
   async getStealingsBlocks(vin: string) {
@@ -364,9 +369,10 @@ export class BlockchainService {
     );
 
     const blockData = await this.provider.getBlock(events[0].blockNumber);
-    const date = new Date(blockData.timestamp * 1000);
+    //const date = new Date(blockData.timestamp * 1000);
+    const timestamp = blockData.timestamp;
 
-    return `${events[0].args} ${date}`;
+    return `${events[0].args},${timestamp}`;
   }
 
   async getDamagesBlocks(vin: string) {
@@ -381,8 +387,9 @@ export class BlockchainService {
     );
 
     const blockData = await this.provider.getBlock(events[0].blockNumber);
-    const date = new Date(blockData.timestamp * 1000);
+    //const date = new Date(blockData.timestamp * 1000);
+    const timestamp = blockData.timestamp;
 
-    return `${events[0].args} ${date}`;
+    return `${events[0].args},${timestamp}`;
   }
 }

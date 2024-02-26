@@ -13,7 +13,7 @@ body {
 }
 
 .mat-card-title {
-  margin-bottom: 30px !important;
+  padding: 10px 0px 20px 0px;
 }
 
 .mat-card {

@@ -1,28 +1,126 @@
-<br />
-<div class="container">
-  <div class="forms">
-    <form ngNativeValidate [formGroup]="reportForm" (ngSubmit)="genReport()">
-      Raport dla pojazdu
-      <label>VIN </label>
-      <input formControlName="vin" required />
-      <button type="submit">Generuj raport</button>
-    </form>
+<div class="container" style="width: 800px">
+  <form ngNativeValidate [formGroup]="reportForm" (ngSubmit)="genReport()">
+    <mat-card class="report-card">
+      <mat-card-title>Raport dla pojazdu</mat-card-title>
+      <div class="form-group">
+        <mat-form-field class="report-mat-form-field" appearance="fill">
+          <mat-label>VIN</mat-label>
+          <input matInput formControlName="vin" [matAutocomplete]="auto" />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let vin of filteredVins | async" [value]="vin">
+              {{ vin }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <button mat-raised-button class="report-button" color="primary">
+          Generuj raport
+        </button>
+      </div>
+    </mat-card>
+  </form>
+  <div class="row basic-info" *ngIf="basicInfo && owner && policy">
+    <div class="col-sm-6">
+      <mat-card>
+        <mat-card-title>Aktualne dane rejestracyjne</mat-card-title>
+        <mat-divider inset></mat-divider>
+        <div class="card-container">
+          <h2>{{ basicInfo._brand }} {{ basicInfo._model }}</h2>
+        </div>
+        <mat-card-content>
+          <p>
+            Numer rejestracyjny: {{ owner._regNum }}
+            <br />
+            <ng-container *ngIf="owner._co_owner; else oneOwner">
+              Właściciele: {{ owner._owner }}, {{ owner._co_owner }}
+            </ng-container>
+            <ng-template #oneOwner> Właściciel: {{ owner._owner }}</ng-template>
+            <br />
+            Województwo rejestracji: wielkopolskie
+            <br />
+            Ważność dow. rejestracyjnego:
+            <ng-container
+              *ngIf="basicInfo._regCertStatus === 'V'; else regCertInvalid"
+            >
+              &nbsp;<i class="fa-solid fa-circle-check"></i>
+            </ng-container>
+            <ng-template #regCertInvalid>
+              &nbsp;<i class="fa-solid fa-circle-xmark"></i>
+            </ng-template>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-sm-6">
+      <mat-card>
+        <mat-card-title
+          >Ubezpieczenie
+          <ng-container *ngIf="policy._oc === false">
+            &nbsp;
+            <i class="fa-solid fa-circle-xmark policy-icon"></i>
+          </ng-container>
+        </mat-card-title>
+        <mat-divider inset></mat-divider>
+        <div class="card-container">
+          <div class="chechbox-wrapper">
+            <div class="row checkbox-row">
+              <div class="col-sm-2">
+                <mat-checkbox
+                  checked="{{ policy._oc }}"
+                  [class.mat-checkbox-disabled]="false"
+                  disabled
+                  >OC</mat-checkbox
+                >
+              </div>
+              <div class="col-sm-2">
+                <mat-checkbox
+                  checked="{{ policy._ac }}"
+                  [class.mat-checkbox-disabled]="false"
+                  disabled
+                  >AC</mat-checkbox
+                >
+              </div>
+              <div class="col-sm-2">
+                <mat-checkbox
+                  checked="{{ policy._nnw }}"
+                  [class.mat-checkbox-disabled]="false"
+                  disabled
+                  >NNW</mat-checkbox
+                >
+              </div>
+              <div class="col-sm-6">
+                <mat-checkbox
+                  checked="{{ policy._assistance }}"
+                  [class.mat-checkbox-disabled]="false"
+                  disabled
+                  >ASSISTANCE</mat-checkbox
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <mat-card-content>
+          <p>
+            Numer polisy: {{ policy._policyNum }}
+            <br />
+            Ważne od: {{ policy._validFrom | formatTimestamp }}
+            <br />
+            Ważne do: {{ policy._validTo | formatTimestamp }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <h1>Vehicle report</h1>
-  {{ vinNumbers }}
-  <br />
-  <br />
-  <h2>{{ basicInfo }}</h2>
+  <!-- <h2>{{ basicInfo }}</h2>
   <br />
   Aktualny właściciel:
   {{ owner }}
   <br />
-  <br />
-  Informacje o ubezpieczeniu:
+  <br /> -->
+  <!-- Informacje o ubezpieczeniu:
   {{ policy }}
   <br />
-  <br />
-  Właściciele po numerach bloku:
+  <br /> -->
+  <!-- Właściciele po numerach bloku:
   {{ ownersBlocks }}
   <br />
   {{ ownersEvents }}
@@ -57,12 +155,84 @@
   <br />
   {{ damagesEvents }}
   <br />
-  <br />
-  Zdjęcia
+  <br /> -->
+  <!-- Zdjęcia
   {{ photosCIDs }}
   <div class="image-gallery">
     <div *ngFor="let id of photosCIDs">
       <img [src]="'https://ipfs.io/ipfs/' + id" width="500" alt="Image" />
     </div>
+  </div> -->
+</div>
+<div class="container history">
+  <section class="timeline_area" *ngIf="groupedEvents.length">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-lg-6">
+          <!-- Section Heading-->
+          <div class="section_heading text-center">
+            <h2>Historia pojazdu</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- Timeline Area-->
+          <div class="apland-timeline-area">
+            <!-- Single Timeline Content-->
+            <div
+              class="single-timeline-area"
+              *ngFor="let event of groupedEvents"
+            >
+              <div class="timeline-date">
+                <p>{{ event.year }}</p>
+              </div>
+              <div class="row">
+                <div
+                  class="col-12 col-md-6 col-lg-4"
+                  *ngFor="let item of event.items"
+                >
+                  <div class="single-timeline-content d-flex">
+                    <ng-container [ngSwitch]="item.type">
+                      <div class="timeline-icon {{ item.type }}">
+                        <i *ngSwitchCase="'OE'" class="fas fa-user"></i>
+                        <i *ngSwitchCase="'ME'" class="fas fa-check-square"></i>
+                        <i *ngSwitchCase="'IE'" class="fas fa-cog"></i>
+                        <i *ngSwitchCase="'CE'" class="fas fa-taxi"></i>
+                        <i
+                          *ngSwitchCase="'SE'"
+                          class="fas fa-exclamation-triangle"
+                        ></i>
+                        <i *ngSwitchCase="'DE'" class="fas fa-car-crash"></i>
+                      </div>
+                      <div class="timeline-text">
+                        <span *ngSwitchCase="'OE'">Zmiana właściciela</span>
+                        <span *ngSwitchCase="'ME'">Odnotowano przebieg</span>
+                        <span *ngSwitchCase="'IE'">Badanie techniczne</span>
+                        <span *ngSwitchCase="'CE'">Kontrola policyjna</span>
+                        <span *ngSwitchCase="'SE'">Zgłoszono kradzież</span>
+                        <span *ngSwitchCase="'DE'">Zarejestrowano szkodę</span>
+                        <h6>{{ item.date | date : "dd.MM.yyyy HH:mm" }}</h6>
+                        <p class="info-p">{{ item.info }}</p>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="chart-container text-center" *ngIf="mileages.length > 0">
+    <h2>Odczyty przebiegów</h2>
+    <line-chart [milesStates]="mileages" [dates]="milesRegDate"></line-chart>
+  </div>
+
+  <div class="gallery-container text-center" *ngIf="photosCIDs.length > 0">
+    <h2>Zdjęcia pojazdu</h2>
+    <image-gallery [images]="photosCIDs"></image-gallery>
   </div>
 </div>

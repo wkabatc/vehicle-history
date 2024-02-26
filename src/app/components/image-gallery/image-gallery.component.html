@@ -1,0 +1,23 @@
+<section class="gallery">
+  <div class="main-image-container">
+    <img
+      [src]="'https://ipfs.io/ipfs/' + images[activeImageIndex]"
+      [alt]="images[activeImageIndex]"
+      class="main-image"
+    />
+  </div>
+  <div class="thumbnails">
+    <div
+      class="thumbnail"
+      *ngFor="let image of images; let i = index"
+      (click)="setActiveImage(i)"
+    >
+      <img
+        [src]="'https://ipfs.io/ipfs/' + image"
+        [alt]="images[i]"
+        class="img-thumbnail"
+        [class.selected]="i === activeImageIndex"
+      />
+    </div>
+  </div>
+</section>

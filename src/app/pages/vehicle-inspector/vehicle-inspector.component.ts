@@ -21,8 +21,6 @@ export class VehicleInspectorComponent implements OnInit {
   vin1 = new FormControl('');
   vin2 = new FormControl('');
 
-  public mmConnected$ = this.blockchainService.isConnectedToMM$;
-
   constructor(private blockchainService: BlockchainService) {
     this.regMileageFormGroup = new FormGroup({
       //zobaczyc czy jakos inaczej mozna ogarnac te formularze, jakos prosciej
@@ -37,7 +35,7 @@ export class VehicleInspectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mmConnected$.subscribe(async (isConnected) => {
+    this.blockchainService.isConnectedToMM$.subscribe(async (isConnected) => {
       console.log('is connected? ' + isConnected);
       if (isConnected === true) {
         const vins = await this.blockchainService.getVinNumbers();

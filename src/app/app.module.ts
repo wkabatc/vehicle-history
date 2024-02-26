@@ -21,6 +21,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { OptionsFormComponent } from './components/options-form/options-form.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { FormatTimestampPipe } from './pipes/format-timestamp.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PoliceComponent,
     InsurerComponent,
     RegistrationOfficeComponent,
-    OptionsFormComponent
+    OptionsFormComponent,
+    ImageGalleryComponent,
+    LineChartComponent,
+    FormatTimestampPipe
   ],
   imports: [
     BrowserModule,

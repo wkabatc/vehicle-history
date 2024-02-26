@@ -19,8 +19,6 @@ export class RegistrationOfficeComponent implements OnInit {
   filteredVins!: Observable<string[]>;
   vin = new FormControl('');
 
-  public mmConnected$ = this.blockchainService.isConnectedToMM$;
-
   constructor(private blockchainService: BlockchainService) {
     this.ownerFormGroup = new FormGroup({
       vin: this.vin,
@@ -41,11 +39,10 @@ export class RegistrationOfficeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mmConnected$.subscribe(async (isConnected) => {
+    this.blockchainService.isConnectedToMM$.subscribe(async (isConnected) => {
       console.log('is connected? ' + isConnected);
       if (isConnected === true) {
         this.vinOptions = await this.blockchainService.getVinNumbers();
-        // this.selected = this.vinOptions[0];
       }
     });
     this.filteredVins = this.vin.valueChanges.pipe(

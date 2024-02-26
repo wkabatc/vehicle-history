@@ -1,107 +1,34 @@
-<div *ngIf="mmConnected$ | async">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8">
-        <form
-          ngNativeValidate
-          [formGroup]="addVehFormGroup"
-          #addVehForm="ngForm"
-          (ngSubmit)="addVehicle()"
-        >
-          <mat-card>
-            <mat-card-title>Zarejestruj pojazd</mat-card-title>
-            <div class="row flex-grow-1">
-              <div class="col-sm-6">
-                <mat-form-field appearance="fill">
-                  <mat-label>VIN</mat-label>
-                  <input matInput formControlName="vin" required />
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Marka</mat-label>
-                  <input matInput formControlName="brand" required />
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Model</mat-label>
-                  <input matInput formControlName="model" required />
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Numer rejestracyjny</mat-label>
-                  <input matInput formControlName="regNum" required />
-                </mat-form-field>
-              </div>
-              <div class="col-sm-6">
-                <mat-form-field appearance="fill">
-                  <mat-label>Właściciel</mat-label>
-                  <input matInput formControlName="owner" required />
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Współwłaściciel</mat-label>
-                  <input matInput formControlName="co_owner" />
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Województwo rejestracji</mat-label>
-                  <input matInput formControlName="regProvince" required />
-                </mat-form-field>
-              </div>
-            </div>
-            <mat-divider inset></mat-divider>
-            <mat-card-actions align="end">
-              <button mat-button color="primary">Zarejestruj</button>
-            </mat-card-actions>
-          </mat-card>
-        </form>
-      </div>
-      <div class="col-sm-4">
-        <form
-          ngNativeValidate
-          [formGroup]="ownerFormGroup"
-          #ownerForm="ngForm"
-          (ngSubmit)="changeOwner()"
-        >
-          <mat-card>
-            <mat-card-title>Nowy właściciel</mat-card-title>
-            <div class="flex-grow-1">
-              <!-- <options-form
-                [label]="'VIN'"
-                [options]="vinNums"
-                [(ngModel)]="selectedOption"
-                [ngModelOptions]="{ standalone: true }"
-              ></options-form> -->
-              <!-- <mat-form-field appearance="fill">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <form
+        ngNativeValidate
+        [formGroup]="addVehFormGroup"
+        #addVehForm="ngForm"
+        (ngSubmit)="addVehicle()"
+      >
+        <mat-card>
+          <mat-card-title>Zarejestruj pojazd</mat-card-title>
+          <div class="row flex-grow-1">
+            <div class="col-sm-6">
+              <mat-form-field appearance="fill">
                 <mat-label>VIN</mat-label>
-                <mat-select
-                  name="vin"
-                  [(value)]="selected"
-                  [disableOptionCentering]="true"
-                  ngModel
-                  required
-                >
-                  <mat-option *ngFor="let option of vinNums" [value]="option">{{
-                    option
-                  }}</mat-option>
-                </mat-select>
-              </mat-form-field> -->
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>VIN</mat-label>
-                <input
-                  matInput
-                  formControlName="vin"
-                  [matAutocomplete]="auto"
-                  required
-                />
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                  <mat-option
-                    *ngFor="let option of filteredVins | async"
-                    [value]="option"
-                  >
-                    {{ option }}
-                  </mat-option>
-                </mat-autocomplete>
+                <input matInput formControlName="vin" required />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Marka</mat-label>
+                <input matInput formControlName="brand" required />
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Model</mat-label>
+                <input matInput formControlName="model" required />
               </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Numer rejestracyjny</mat-label>
                 <input matInput formControlName="regNum" required />
               </mat-form-field>
+            </div>
+            <div class="col-sm-6">
               <mat-form-field appearance="fill">
                 <mat-label>Właściciel</mat-label>
                 <input matInput formControlName="owner" required />
@@ -115,13 +42,84 @@
                 <input matInput formControlName="regProvince" required />
               </mat-form-field>
             </div>
-            <mat-divider inset></mat-divider>
-            <mat-card-actions align="end">
-              <button mat-button color="primary">Akceptuj</button>
-            </mat-card-actions>
-          </mat-card>
-        </form>
-      </div>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Zarejestruj</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-sm-4">
+      <form
+        ngNativeValidate
+        [formGroup]="ownerFormGroup"
+        #ownerForm="ngForm"
+        (ngSubmit)="changeOwner()"
+      >
+        <mat-card>
+          <mat-card-title>Nowy właściciel</mat-card-title>
+          <div class="flex-grow-1">
+            <!-- <options-form
+                [label]="'VIN'"
+                [options]="vinNums"
+                [(ngModel)]="selectedOption"
+                [ngModelOptions]="{ standalone: true }"
+              ></options-form> -->
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>VIN</mat-label>
+                <mat-select
+                  name="vin"
+                  [(value)]="selected"
+                  [disableOptionCentering]="true"
+                  ngModel
+                  required
+                >
+                  <mat-option *ngFor="let option of vinNums" [value]="option">{{
+                    option
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>VIN</mat-label>
+              <input
+                matInput
+                formControlName="vin"
+                [matAutocomplete]="auto"
+                required
+              />
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let option of filteredVins | async"
+                  [value]="option"
+                >
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Numer rejestracyjny</mat-label>
+              <input matInput formControlName="regNum" required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Właściciel</mat-label>
+              <input matInput formControlName="owner" required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Współwłaściciel</mat-label>
+              <input matInput formControlName="co_owner" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Województwo rejestracji</mat-label>
+              <input matInput formControlName="regProvince" required />
+            </mat-form-field>
+          </div>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions align="end">
+            <button mat-button color="primary">Akceptuj</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
     </div>
   </div>
 </div>

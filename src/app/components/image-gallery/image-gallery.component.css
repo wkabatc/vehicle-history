@@ -1,0 +1,36 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-image-container {
+  margin: 0.5rem;
+}
+
+.main-image {
+  height: 500px;
+  border-radius: 2px;
+}
+
+.thumbnails {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  margin: 0.5rem;
+  height: 50px;
+}
+
+.img-thumbnail.selected {
+  outline: 2px solid #3f51b5;
+}
+
+.img-thumbnail {
+  width: 100px;
+  max-height: 100%;
+  object-fit: cover;
+}

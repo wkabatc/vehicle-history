@@ -22,8 +22,6 @@ export class PoliceComponent implements OnInit {
   vin1 = new FormControl('');
   vin2 = new FormControl('');
 
-  public mmConnected$ = this.blockchainService.isConnectedToMM$;
-
   constructor(private blockchainService: BlockchainService) {
     // this.regMileageForm = new FormGroup({
     //   //odesparować to jako komponent, bo jest to wspolne dla inspector i police
@@ -44,13 +42,12 @@ export class PoliceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mmConnected$.subscribe(async (isConnected) => {
+    this.blockchainService.isConnectedToMM$.subscribe(async (isConnected) => {
       console.log('is connected? ' + isConnected);
       if (isConnected === true) {
         const vins = await this.blockchainService.getVinNumbers();
         this.vinOptions1 = vins;
         this.vinOptions2 = vins;
-        // this.selected = this.vinOptions[0];
       }
     });
     this.filteredVins1 = this.vin1.valueChanges.pipe(
